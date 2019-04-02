@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "target": "esnext",
+    "module": "esnext",
+    "allowJs": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": false,
+    "outDir": ".tsc/",
+    "removeComments": true,
+    "types": ["lodash", "jest"],
+    "lib": ["es6", "dom"],
+    "importHelpers": true,
+    "noEmitHelpers": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "esModuleInterop": true,
+    "preserveSymlinks": true,
+  }
+}
