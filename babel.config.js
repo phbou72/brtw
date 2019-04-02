@@ -1,22 +1,21 @@
 module.exports = function(api) {
-  api.cache(true);
+    api.cache(true);
 
-  const presets = [
-    [
-      "@babel/preset-env",
-      "@babel/preset-react",
-      {
-        targets: "> 0.25%, not dead",
-        useBuiltIns: "usage"
-      },
-      "@babel/preset-typescript"
-    ]
-  ];
+    const presets = [
+        [
+            "@babel/preset-env",
+            "@babel/preset-react",
+            {
+                targets: "> 0.25%, not dead",
+                useBuiltIns: "usage",
+            },
+        ],
+    ];
 
-  const plugins = ["@babel/jest"];
+    const plugins = ["@babel/jest"];
 
-  return {
-    presets
-    // plugins
-  };
+    return {
+        presets,
+        plugins,
+    };
 };

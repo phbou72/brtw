@@ -1,5 +1,9 @@
 import sum from "src/sum";
 
-it("sum a + b", () => {
-    expect(sum(1, 2)).toBe(3);
+it("should be one", () => {
+    expect(sum(1, 2)).toBe(1);
+});
+
+it("should be 5", () => {
+    expect(sum(3, 2)).toBe(5);
 });

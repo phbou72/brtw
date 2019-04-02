@@ -4,3 +4,5 @@ node_modules
 *.orig
 stats.json
 npm-debug.log
+
+coverage/
