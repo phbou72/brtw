@@ -5,11 +5,13 @@
         "target": "esnext",
         "module": "esnext",
         "allowJs": true,
-        "jsx": "preserve",
+        "jsx": "react",
         "sourceMap": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": false,
-        "outDir": ".tsc/",
+        "esModuleInterop": false,
+        "preserveSymlinks": true,
+        "outDir": "./dist",
         "types": ["lodash", "jest"],
         "lib": ["es6", "dom"],
         "importHelpers": true,
@@ -20,10 +22,7 @@
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
         "forceConsistentCasingInFileNames": true,
-        "moduleResolution": "node",
-        "baseUrl": "./",
-        "esModuleInterop": true,
-        "preserveSymlinks": true
+        "moduleResolution": "node"
     },
     "exclude": ["node_modules"],
     "include": ["src/**/*"]
