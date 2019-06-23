@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@babel/polyfill": "^7.4.0",
+    "decode": "^0.3.0",
     "lodash": "^4.17.11",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
@@ -26,7 +27,7 @@
     "prettier": "^1.16.4",
     "ts-jest": "^24.0.1",
     "ts-loader": "^5.3.3",
-    "typescript": "^3.4.1",
+    "typescript": "^3.5.2",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"
