@@ -1,6 +1,7 @@
 const path = require("path");
 
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 const htmlPlugin = new HtmlWebPackPlugin({
     template: "./src/index.html",
@@ -8,7 +9,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
 });
 
 module.exports = {
-    devtool: "inline-source-map",
+    devtool: "cheap-module-eval-source-map", // inline-source-map
     entry: path.resolve(__dirname, "./src/index.tsx"),
     output: {
         path: path.resolve(__dirname, "./dist"),
@@ -20,5 +21,5 @@ module.exports = {
     module: {
         rules: [{ test: /\.tsx?$/, loader: "ts-loader" }],
     },
-    plugins: [htmlPlugin],
+    plugins: [htmlPlugin, new BundleAnalyzerPlugin()],
 };
