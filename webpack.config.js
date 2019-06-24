@@ -1,15 +1,14 @@
 const path = require("path");
 
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 const htmlPlugin = new HtmlWebPackPlugin({
     template: "./src/index.html",
-    filename: "index.html",
+    hash: true,
 });
 
 module.exports = {
-    devtool: "cheap-module-eval-source-map", // inline-source-map
     entry: path.resolve(__dirname, "./src/index.tsx"),
     output: {
         path: path.resolve(__dirname, "./dist"),
@@ -21,5 +20,9 @@ module.exports = {
     module: {
         rules: [{ test: /\.tsx?$/, loader: "ts-loader" }],
     },
-    plugins: [htmlPlugin, new BundleAnalyzerPlugin()],
+    devtool: "cheap-module-eval-source-map", // inline-source-map
+    plugins: [
+        htmlPlugin,
+        // new BundleAnalyzerPlugin()
+    ],
 };
