@@ -6,6 +6,8 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.0",
     "decode": "^0.3.0",
+    "jest-dot-reporter": "^1.0.8",
+    "jest-junit": "^6.4.0",
     "lodash": "^4.17.11",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
