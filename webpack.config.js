@@ -10,6 +10,11 @@ const htmlPlugin = new HtmlWebPackPlugin({
     hash: true,
 });
 
+const miniCSSPlugin = new MiniCssExtractPlugin({
+    filename: "[name].css",
+    chunkFilename: "[id].css",
+});
+
 module.exports = {
     entry: path.resolve(__dirname, "./src/index.tsx"),
     output: {
@@ -44,6 +49,7 @@ module.exports = {
     devtool: "cheap-module-eval-source-map", // inline-source-map default
     plugins: [
         htmlPlugin,
+        miniCSSPlugin,
         // new BundleAnalyzerPlugin()
     ],
 };
