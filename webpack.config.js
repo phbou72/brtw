@@ -4,8 +4,10 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ForkTsCheckerNotifierWebpackPlugin = require("fork-ts-checker-notifier-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const createStyledComponentsTransformer = require("typescript-plugin-styled-components").default;
 
 // const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const styledComponentsTransformer = createStyledComponentsTransformer();
 
 const htmlPlugin = new HtmlWebPackPlugin({
     template: "src/index.html",
@@ -29,7 +31,11 @@ module.exports = {
     },
     module: {
         rules: [
-            { test: /\.tsx?$/, use: [{ loader: "ts-loader", options: { transpileOnly: true } }] },
+            {
+                test: /\.tsx?$/,
+                use: [{ loader: "ts-loader", options: { transpileOnly: true } }],
+                options: { getCustomTransformers: () => ({ before: [styledComponentsTransformer] }) },
+            },
             {
                 test: /\.scss$/,
                 use: [
