@@ -2,6 +2,8 @@ const path = require("path");
 
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ForkTsCheckerNotifierWebpackPlugin = require("fork-ts-checker-notifier-webpack-plugin");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
 // const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
@@ -17,6 +19,7 @@ const miniCSSPlugin = new MiniCssExtractPlugin({
 
 module.exports = {
     entry: path.resolve(__dirname, "./src/index.tsx"),
+    devtool: "cheap-module-eval-source-map", // inline-source-map default
     output: {
         path: path.resolve(__dirname, "./dist"),
         filename: "bundle.js",
@@ -26,7 +29,7 @@ module.exports = {
     },
     module: {
         rules: [
-            { test: /\.tsx?$/, loader: "ts-loader" },
+            { test: /\.tsx?$/, use: [{ loader: "ts-loader", options: { transpileOnly: true } }] },
             {
                 test: /\.scss$/,
                 use: [
@@ -46,10 +49,13 @@ module.exports = {
             },
         ],
     },
-    devtool: "cheap-module-eval-source-map", // inline-source-map default
     plugins: [
         htmlPlugin,
         miniCSSPlugin,
+        new ForkTsCheckerWebpackPlugin({
+            eslint: true,
+        }),
+        new ForkTsCheckerNotifierWebpackPlugin({ title: "TypeScript", excludeWarnings: false }),
         // new BundleAnalyzerPlugin()
     ],
 };
