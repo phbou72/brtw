@@ -18,7 +18,7 @@
     "@types/lodash": "^4.14.149",
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.4",
-    "@types/styled-components": "^4.4.1",
+    "@types/styled-components": "^4.4.2",
     "babel-jest": "^24.9.0",
     "css-loader": "^3.4.2",
     "cssnano": "^4.1.10",
