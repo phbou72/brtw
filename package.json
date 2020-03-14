@@ -48,7 +48,7 @@
     "webpack-dev-server": "^3.10.3"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --runInBand",
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production"
   },
