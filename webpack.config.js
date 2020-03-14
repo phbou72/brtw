@@ -33,8 +33,15 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                use: [{ loader: "ts-loader", options: { transpileOnly: true } }],
-                options: { getCustomTransformers: () => ({ before: [styledComponentsTransformer] }) },
+                use: [
+                    {
+                        loader: "ts-loader",
+                        options: {
+                            transpileOnly: true,
+                            getCustomTransformers: () => ({ before: [styledComponentsTransformer] }),
+                        },
+                    },
+                ],
             },
             {
                 test: /\.scss$/,
