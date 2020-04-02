@@ -57,6 +57,23 @@ module.exports = {
                 },
             }),
         ],
+        splitChunks: {
+            chunks: "all",
+            minSize: 30000,
+            maxSize: 244000,
+            minChunks: 1,
+            maxAsyncRequests: 20,
+            maxInitialRequests: 5,
+            automaticNameDelimiter: "~",
+            cacheGroups: {
+                dependencies: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "curbside.dependencies",
+                    chunks: "all",
+                    priority: -10,
+                },
+            },
+        },
     },
     plugins: [
         new CleanWebpackPlugin(),
