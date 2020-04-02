@@ -21,7 +21,7 @@ const miniCSSPlugin = new MiniCssExtractPlugin({
 
 module.exports = {
     entry: path.resolve(__dirname, "./src/index.tsx"),
-    devtool: "cheap-module-eval-source-map", // inline-source-map is the default
+    devtool: "eval-cheap-module-source-map", // inline-source-map is the default
     output: {
         path: path.resolve(__dirname, "./dist"),
         filename: "bundle.js",
