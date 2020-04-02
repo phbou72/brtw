@@ -1,4 +1,4 @@
-import sum from "src/sum";
+import sum from "../src/sum";
 
 it("should be one", () => {
     expect(sum(1, 2)).toBe(1);
