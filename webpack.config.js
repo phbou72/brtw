@@ -14,6 +14,11 @@ module.exports = {
     entry: path.resolve(__dirname, "./src/index.tsx"),
     cache: false,
     devtool: "eval-cheap-module-source-map", // inline-source-map is the default
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        compress: true,
+        port: 8080,
+    },
     output: {
         path: path.resolve(__dirname, "./dist"),
         filename: "[name].bundle.js",
@@ -68,7 +73,7 @@ module.exports = {
             cacheGroups: {
                 dependencies: {
                     test: /[\\/]node_modules[\\/]/,
-                    name: "curbside.dependencies",
+                    name: "libs",
                     chunks: "all",
                     priority: -10,
                 },
@@ -83,6 +88,7 @@ module.exports = {
         }),
         new ForkTsCheckerWebpackPlugin({
             eslint: true,
+            checkSyntacticErrors: true,
         }),
         new ForkTsCheckerNotifierWebpackPlugin({ title: "TypeScript", excludeWarnings: false }),
         // new BundleAnalyzerPlugin(),
