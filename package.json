@@ -43,8 +43,8 @@
   },
   "scripts": {
     "test": "jest --runInBand",
-    "start": "webpack-dev-server --mode development --open --hot",
-    "build": "webpack --mode production"
+    "start": "webpack-dev-server --mode development --env.development --open --hot",
+    "build": "webpack --mode production --env.production"
   },
   "author": "",
   "license": "ISC"

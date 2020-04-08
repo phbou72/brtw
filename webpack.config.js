@@ -10,87 +10,100 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 // const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const styledComponentsTransformer = createStyledComponentsTransformer();
 
-module.exports = {
-    entry: path.resolve(__dirname, "./src/index.tsx"),
-    cache: false,
-    devtool: "eval-cheap-module-source-map", // inline-source-map is the default
-    devServer: {
-        contentBase: path.join(__dirname, "dist"),
-        compress: true,
-        port: 8080,
-    },
-    output: {
-        path: path.resolve(__dirname, "./dist"),
-        filename: "[name].bundle.js",
-        chunkFilename: "[name].bundle.js",
-    },
-    resolve: {
-        extensions: [".ts", ".tsx", ".js", ".jsx"],
-    },
-    module: {
-        rules: [
-            {
-                test: /\.tsx?$/,
-                use: [
-                    {
-                        loader: "ts-loader",
-                        options: {
-                            transpileOnly: true,
-                            getCustomTransformers: () => ({ before: [styledComponentsTransformer] }),
+module.exports = function (env) {
+    const isEnvDevelopment = !!env.development;
+    const isEnvProduction = !!env.production;
+
+    const paths = {
+        publicUrlOrPath: "/",
+        entryPath: path.resolve(__dirname, "./src/index.tsx"),
+        dist: path.join(__dirname, "./dist"),
+    };
+
+    return {
+        entry: paths.entryPath,
+        cache: false,
+        devtool: "eval-cheap-module-source-map", // inline-source-map is the default
+        devServer: {
+            contentBase: paths.dist,
+            compress: true,
+            port: 8080,
+        },
+        output: {
+            path: paths.dist,
+            filename: "[name].bundle.js",
+            chunkFilename: "[name].bundle.js",
+        },
+        resolve: {
+            extensions: [".ts", ".tsx", ".js", ".jsx"],
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.tsx?$/,
+                    use: [
+                        {
+                            loader: "ts-loader",
+                            options: {
+                                transpileOnly: true,
+                                getCustomTransformers: () => ({ before: [styledComponentsTransformer] }),
+                            },
                         },
-                    },
-                ],
-            },
-            {
-                test: /\.(png|svg|jpg|gif)$/,
-                use: ["file-loader"],
-            },
-            {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: ["file-loader"],
-            },
-        ],
-    },
-    optimization: {
-        minimizer: [
-            new TerserPlugin({
-                cache: true,
-                parallel: true,
-                sourceMap: true, // Must be set to true if using source-maps in production
-                terserOptions: {
-                    // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
+                    ],
                 },
-            }),
-        ],
-        splitChunks: {
-            chunks: "all",
-            minSize: 30000,
-            maxSize: 244000,
-            minChunks: 1,
-            maxAsyncRequests: 20,
-            maxInitialRequests: 5,
-            automaticNameDelimiter: "~",
-            cacheGroups: {
-                dependencies: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: "libs",
-                    chunks: "all",
-                    priority: -10,
+                {
+                    test: /\.(png|svg|jpg|gif)$/,
+                    use: ["file-loader"],
+                },
+                {
+                    test: /\.(woff|woff2|eot|ttf|otf)$/,
+                    use: ["file-loader"],
+                },
+            ],
+        },
+        optimization: {
+            minimizer: [
+                new TerserPlugin({
+                    cache: true,
+                    parallel: true,
+                    sourceMap: true, // Must be set to true if using source-maps in production
+                    terserOptions: {
+                        // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
+                    },
+                }),
+            ],
+            splitChunks: {
+                chunks: "all",
+                minSize: 30000,
+                maxSize: 244000,
+                minChunks: 1,
+                maxAsyncRequests: 20,
+                maxInitialRequests: 5,
+                automaticNameDelimiter: "~",
+                cacheGroups: {
+                    dependencies: {
+                        test: /[\\/]node_modules[\\/]/,
+                        name: "libs",
+                        chunks: "all",
+                        priority: -10,
+                    },
                 },
             },
         },
-    },
-    plugins: [
-        new CleanWebpackPlugin(),
-        new HtmlWebPackPlugin({
-            template: "src/index.html",
-            hash: true,
-        }),
-        new ForkTsCheckerWebpackPlugin({
-            eslint: true,
-            checkSyntacticErrors: true,
-        }),
-        new ForkTsCheckerNotifierWebpackPlugin({ title: "TypeScript", excludeWarnings: false }),
-        // new BundleAnalyzerPlugin(),
-    ],
+        plugins: [
+            new CleanWebpackPlugin(),
+            new HtmlWebPackPlugin({
+                template: "src/index.html",
+                hash: true,
+            }),
+            new ForkTsCheckerWebpackPlugin({
+                eslint: true,
+                useTypescriptIncrementalApi: true,
+                checkSyntacticErrors: true,
+                silent: true,
+            }),
+            new ForkTsCheckerNotifierWebpackPlugin({ title: "TypeScript", excludeWarnings: false }),
+            // new BundleAnalyzerPlugin(),
+        ],
+    };
 };
