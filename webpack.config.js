@@ -22,6 +22,7 @@ module.exports = function (env) {
     };
 
     return {
+        context: __dirname, // to automatically find tsconfig.json
         entry: paths.entryPath,
         cache: false,
         devtool: "eval-cheap-module-source-map", // inline-source-map is the default
@@ -42,6 +43,7 @@ module.exports = function (env) {
             rules: [
                 {
                     test: /\.tsx?$/,
+                    exclude: /node_modules/,
                     use: [
                         {
                             loader: "ts-loader",
