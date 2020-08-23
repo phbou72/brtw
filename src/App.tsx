@@ -6,7 +6,7 @@ const StyledApp = styled.div`
     background-color: red;
 `;
 
-const App = () => {
+const App = (): React.ReactElement => {
     return <StyledApp className="App">App test</StyledApp>;
 };
 
