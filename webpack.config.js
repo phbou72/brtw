@@ -1,9 +1,7 @@
 const path = require("path");
-
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ForkTsCheckerNotifierWebpackPlugin = require("fork-ts-checker-notifier-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
 const createStyledComponentsTransformer = require("typescript-plugin-styled-components").default;
 const TerserPlugin = require("terser-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -12,8 +10,8 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const styledComponentsTransformer = createStyledComponentsTransformer();
 
 module.exports = function (env) {
-    const isEnvDevelopment = !!env.development;
-    const isEnvProduction = !!env.production;
+    // const isEnvDevelopment = !!env.development;
+    // const isEnvProduction = !!env.production;
 
     const paths = {
         publicUrlOrPath: "/",
@@ -104,21 +102,6 @@ module.exports = function (env) {
                     files: "./src/**/*.{ts,tsx,js,jsx}", // required - same as command `eslint ./src/**/*.{ts,tsx,js,jsx} --ext .ts,.tsx,.js,.jsx`
                 },
             }),
-            isEnvProduction &&
-                new WorkboxWebpackPlugin.GenerateSW({
-                    clientsClaim: true,
-                    exclude: [/\.map$/, /asset-manifest\.json$/],
-                    navigateFallback: paths.publicUrlOrPath + "index.html",
-                    navigateFallbackDenylist: [
-                        // Exclude URLs starting with /_, as they're likely an API call
-                        new RegExp("^/_"),
-                        // Exclude any URLs whose last part seems to be a file extension
-                        // as they're likely a resource and not a SPA route.
-                        // URLs containing a "?" character won't be blacklisted as they're likely
-                        // a route with query params (e.g. auth callbacks).
-                        new RegExp("/[^/?]+\\.[^/]+$"),
-                    ],
-                }),
             new ForkTsCheckerNotifierWebpackPlugin({ title: "TypeScript", excludeWarnings: false }),
             // new BundleAnalyzerPlugin(),
         ].filter(Boolean),
