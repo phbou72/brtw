@@ -7,7 +7,7 @@ const StyledApp = styled.div`
 `;
 
 const App = (): React.ReactElement => {
-    return <StyledApp className="App">App test</StyledApp>;
+    return <StyledApp className="App">App test 2</StyledApp>;
 };
 
 export default App;

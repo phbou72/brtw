@@ -27,7 +27,7 @@ module.exports = function (env) {
         devServer: {
             contentBase: paths.dist,
             compress: true,
-            port: 8080,
+            port: 8000,
         },
         output: {
             path: paths.dist,
@@ -92,7 +92,7 @@ module.exports = function (env) {
             },
         },
         plugins: [
-            new CleanWebpackPlugin(),
+            new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
             new HtmlWebPackPlugin({
                 template: "src/index.html",
                 hash: true,

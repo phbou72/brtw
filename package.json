@@ -2,7 +2,7 @@
   "name": "brtw",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "private": true,
   "dependencies": {
     "@babel/polyfill": "^7.11.5",
     "lodash": "^4.17.20",
@@ -24,7 +24,7 @@
     "@types/styled-components": "^5.1.4",
     "@types/webpack": "^4.41.22",
     "@typescript-eslint/eslint-plugin": "^4.4.1",
-    "@typescript-eslint/parser": "^4.4.0",
+    "@typescript-eslint/parser": "^4.4.1",
     "babel-jest": "^26.5.2",
     "clean-webpack-plugin": "^3.0.0",
     "eslint": "^7.11.0",
@@ -49,13 +49,14 @@
   },
   "scripts": {
     "test": "jest --runInBand",
-    "start": "webpack-dev-server --mode development --env.development --open --hot",
-    "build": "webpack --mode production --env.production"
+    "watch": "webpack --watch",
+    "start": "webpack serve",
+    "build": "webpack"
   },
   "author": "Philippe Bourdages",
   "license": "ISC",
   "type": "commonjs",
   "engines": {
-    "node": ">=8.10.0"
+    "node": ">=10.13.0"
   }
 }
