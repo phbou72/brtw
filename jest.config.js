@@ -61,7 +61,7 @@ module.exports = {
             diagnostics: {
                 ignoreCodes: [151001], // ignore the warning with the given code.
             },
-            tsConfig: {
+            tsconfig: {
                 jsx: "react",
                 esModuleInterop: false, // (default is false) if true will throw error for import * as isToday from "date-fns/is_today"; A namespace-style import cannot be called or constructed, and will cause a failure at runtime.
             },
