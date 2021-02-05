@@ -9,7 +9,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 // const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const styledComponentsTransformer = createStyledComponentsTransformer();
 
-module.exports = function (env) {
+module.exports = function (_env) {
     // const isEnvDevelopment = !!env.development;
     // const isEnvProduction = !!env.production;
 
