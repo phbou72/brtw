@@ -33,7 +33,7 @@
                 "args": "none"
             }
         ],
-        "no-console": "off",
+        "no-console": "warn",
         "no-spaced-func": 2
     }
 }
