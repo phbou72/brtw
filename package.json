@@ -50,7 +50,7 @@
   },
   "scripts": {
     "test": "jest --runInBand",
-    "watch": "webpack serve --cache",
+    "start": "webpack serve --cache",
     "build": "webpack"
   },
   "author": "Philippe Bourdages",
