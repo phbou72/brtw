@@ -9,9 +9,9 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 // const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const styledComponentsTransformer = createStyledComponentsTransformer();
 
-module.exports = function (_env) {
+module.exports = function (env) {
     // const isEnvDevelopment = !!env.development;
-    // const isEnvProduction = !!env.production;
+    const isEnvProduction = !!env.production;
 
     const paths = {
         publicUrlOrPath: "/",
@@ -30,6 +30,7 @@ module.exports = function (_env) {
             host: "0.0.0.0",
             port: 8080,
         },
+        mode: isEnvProduction ? "production" : "development",
         output: {
             path: paths.dist,
             filename: "[name].bundle.js",

@@ -51,7 +51,7 @@
   "scripts": {
     "test": "jest --runInBand",
     "start": "webpack serve --cache",
-    "build": "webpack"
+    "build": "webpack --env=production"
   },
   "author": "Philippe Bourdages",
   "license": "ISC",
