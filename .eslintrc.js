@@ -20,12 +20,7 @@ module.exports = {
         ],
         quotes: ["error", "double"],
         semi: ["error", "always"],
-        "no-unused-vars": [
-            "error",
-            {
-                args: "none",
-            },
-        ],
+        "no-unused-vars": "error",
         "no-console": "warn",
         "no-spaced-func": 2,
         "@typescript-eslint/explicit-function-return-type": "off",
