@@ -1,5 +1,5 @@
 const colors = {
-    black: "#000",
+    black: "black",
 };
 
 export default colors;

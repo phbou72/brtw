@@ -4,10 +4,12 @@ import { ThemeProvider, DefaultTheme, ThemeProps } from "styled-components";
 
 import colors from "./colors";
 import mediaQuery from "./mediaQuery";
+import devices from "./devices";
 
 const theme = {
     ...colors,
     ...mediaQuery,
+    ...devices,
 };
 
 interface IProps {

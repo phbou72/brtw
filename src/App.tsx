@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { BaseTheme } from "./theme";
 
@@ -7,10 +7,23 @@ const StyledApp = styled.div`
     background-color: red;
 `;
 
-const App = (): React.ReactElement => {
+const TestTheme = styled.div(({ theme }) => {
+    return css`
+        color: red;
+
+        @media ${theme.desktop} {
+            color: black;
+        }
+
+        margin-top: 16px;
+    `;
+});
+
+const App = () => {
     return (
         <BaseTheme>
-            <StyledApp className="App">App test 2</StyledApp>
+            <StyledApp>Styled App</StyledApp>
+            <TestTheme>Test theme</TestTheme>
         </BaseTheme>
     );
 };
