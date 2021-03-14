@@ -7,17 +7,17 @@ const StyledApp = styled.div`
     background-color: red;
 `;
 
-const TestTheme = styled.div(({ theme }) => {
-    return css`
+const TestTheme = styled.div(
+    ({ theme }) => css`
+        margin-top: 16px;
         color: red;
 
-        @media ${theme.desktop} {
+        ${theme.desktop} {
             color: black;
+            background: tomato;
         }
-
-        margin-top: 16px;
-    `;
-});
+    `
+);
 
 const App = () => {
     return (
