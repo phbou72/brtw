@@ -25,7 +25,6 @@ module.exports = function (env) {
         cache: false,
         devtool: "eval-cheap-module-source-map", // inline-source-map is the default
         devServer: {
-            contentBase: paths.dist,
             compress: true,
             host: "0.0.0.0",
             port: 8080,
